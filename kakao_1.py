@@ -24,6 +24,20 @@ def floodfill(val, i, j):
         sum += floodfill(val, i, j+1)
     return sum
 
+def floodfill2(val, i, j):
+
+    if i >= m or j >= n or i < 0 or j < 0 or val is not picture[i][j]:
+        # 그냥 index가 넘는 모든 경우의 수를 다 하는 대신 그 상황일 때는 빠르게 if문으로 0을 주고 리턴시킨다.
+        return 0
+    picture[i][j] = 0
+    # 한번 왔다간 곳에는 0으로 표시한다.
+    sum = 1
+    sum += floodfill(val, i-1, j)
+    sum += floodfill(val, i, j-1)
+    sum += floodfill(val, i+1, j)
+    sum += floodfill(val, i, j+1)
+
+    return sum
 
 area = []
 
